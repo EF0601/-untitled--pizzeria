@@ -24,6 +24,7 @@ function updateValues() {
 
   console.log("Values updated successfully.");
 }
+updateValues();
 function codeSubmit() {
   switch (document.querySelector('.codeInput').value) {
     case 'Enter code for THIS game.':
