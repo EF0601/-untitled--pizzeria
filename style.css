@@ -3,10 +3,14 @@
   margin: 0;
   box-sizing: border-box;
   user-select: none;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: orange-kid, 'Times New Roman', Georgia;
 }
 ::-webkit-scrollbar {
   display: none;
+}
+@font-face {
+  font-family: orange-kid;
+  src: url(orange\ kid.otf);
 }
 body{
   background: rgb(182, 143, 95);
@@ -29,6 +33,7 @@ input{
   font-size: large;
   border: none;
   outline: none;
+  min-width: 270px;
 }
 input:hover,
 input:focus{
@@ -71,4 +76,18 @@ footer{
   text-align: center;
   padding: 30px;
   text-decoration: underline;
+}
+.codeButton{
+  margin: 5px;
+  margin-left: 0;
+  padding: 7.5px;
+  border: none;
+  background-color: yellow;
+  color: red;
+}
+.codeButton:hover {
+  background-color: white;
+}
+button{
+  outline: none;
 }

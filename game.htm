@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[Untitled]'s Pizzeria (v0.1.0-alpha)</title>
+  <title>[Untitled]'s Pizzeria (v0.2.0-alpha)</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>[<input type="text" maxlength="30" value="Untitled">]'s Pizzeria</h1>
+  <h1>[<input type="text" maxlength="30" value="Untitled" class="nameInput">]'s Pizzeria</h1>
   <div class="container">
     <div class="box">
       <h2>Factory</h2>
@@ -21,16 +21,27 @@
       <div class="spanGroup">$<span class="coins">-</span> <br></div>
       <div class="spanGroup"><span class="pizzas">-</span> pizzas <br></div>
       <div class="spanGroup"><span class="dough">-</span> dough <br></div>
-      <div class="spanGroup"><span class="topping">-</span> toppings <br></div>
+      <div class="spanGroup"><span class="toppings">-</span> toppings <br></div>
       <div class="spanGroup"><span class="sauce">-</span> sauce <br></div>
+      <div class="spanGroup">$<span class="pizzaValue">-</span> per pizza<br></div>
+      <h2>Just sold <span class="soldPizzas">0</span> pizzas for $<span class="soldPizzasValue">0</span></h2>
     </div>
     <div class="box">
       <h2>Upgrades</h2>
-      <button>Pizza value +1 ($100)</button>
+      <button>Pizza value +1 ($100)</button><br>
+      <button>Auto pizza maker upgrade($75)</button><br>
+      <button>Auto dough maker upgrade ($50)</button><br>
+      <button>Auto topping maker upgrade ($50)</button><br>
+      <button>Auto sauce maker upgrade ($50)</button><br>
     </div>
   </div>
   <footer>
-    <h2>Untitled Pizzeria: Tycoon (remastered) v0.1.0-alpha</h2>
+    <h2>Untitled Pizzeria: Tycoon (remastered) v0.2.0-alpha</h2><br>
+    <input type="text" value="Enter code for THIS game." class="codeInput">    <button class="codeButton" onclick="codeSubmit()">Submit</button>
   </footer>
+
+  <!--Scripts-->
+  <script src="./nameInput.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
