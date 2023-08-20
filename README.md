@@ -7,6 +7,12 @@ Github Page: https://ef0601.github.io/-untitled--pizzeria/game.htm
 The team wasn't working much until Aug 17, when the first major release appeared. Before that, the structure was not even created.
 Halfway through development, the original `h1`s and `h2`s were outlined, but the `color` attribute was set to `white`. After one of our devs was working on the footer, he noticed that `black` worked better with the `yellow` text outline.
 Soon after the footer was added, `v0.1.0-alpha` was released. Then we published the pages link.
+
+The `v0.2.0-alpha` added codes. Since we realized people could reload the game, we made it so that the code can be used for infinite games but each game only allows one code.
+
+The `v0.3.0-beta` update is mostly just autoclickers. The autoclicker is actually inspired from the *Idle Tower Building* game. The rest of the stuff is just important structure stuff. 
+Also we published the release too early: we forgot to sneak a code in.
+
 # Extra Cool Stuff
 For those of you who want to use our text outline code:
 ```
