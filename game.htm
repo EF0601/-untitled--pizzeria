@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[Untitled]'s Pizzeria (v0.2.1-alpha)</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./modal.css">
 </head>
 <body>
   <h1>[<input type="text" maxlength="30" value="Untitled" class="nameInput">]'s Pizzeria</h1>
   <div class="container">
     <div class="box">
       <h2>Factory</h2>
-      <button>Make pizza</button><br>
-      <button>Get dough</button><br>
-      <button>Get toppings</button><br>
-      <button>Get sauce</button><br>
+      <button onclick="makePizza()" class="pizzaBtn" oncontextmenu="autoClick('pizza')">Make pizza</button><br>
+      <button onclick="getItem('dough')" class="doughBtn" oncontextmenu="autoClick('dough')">Get dough</button><br>
+      <button onclick="getItem('toppings')" class="toppingsBtn" oncontextmenu="autoClick('toppings')">Get toppings</button><br>
+      <button onclick="getItem('sauce')" class="sauceBtn" oncontextmenu="autoClick('sauce')">Get sauce</button><br>
+      <button onclick="autoClick('')">Clear Auto-clicker</button>
     </div>
     <div class="box">
       <h2>Info</h2>
@@ -37,11 +39,22 @@
   </div>
   <footer>
     <h2>Untitled Pizzeria: Tycoon (remastered) v0.2.1-alpha</h2><br>
-    <input type="text" value="Enter code for THIS game." class="codeInput">    <button class="codeButton" onclick="codeSubmit()">Submit</button>
+    <input type="text" value="Enter code for THIS game." class="codeInput">    <button class="codeButton" onclick="codeSubmit()">Submit</button><br>
+    <button id="myBtn" class="codeButton">Open wiki</button>
   </footer>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <iframe src="https://ef0601.github.io/untitled-pizzeria-wiki/welcome.html" frameborder="0" width="100%" height="300px"></iframe>
+    </div>
+
+  </div>
 
   <!--Scripts-->
   <script src="./nameInput.js"></script>
   <script src="./main.js"></script>
+  <script src="./modal.js"></script>
 </body>
 </html>

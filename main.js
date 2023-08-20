@@ -68,3 +68,74 @@ setInterval(() => {
     document.querySelector('.soldPizzasValue').textContent = 0;
   }
 }, 1000);
+function getItem(thing) {
+  switch (thing) {
+    case 'dough':
+      statistics.dough++;
+      break;
+    case 'toppings':
+      statistics.toppings++;
+      break;
+    case 'sauce':
+      statistics.sauce++;
+      break;
+    default:
+      break;
+
+  }
+  updateValues();
+}
+function makePizza() {
+  if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
+    statistics.pizzas++;
+    statistics.dough--;
+    statistics.sauce--;
+    statistics.toppings = statistics.toppings - 2;
+  }
+  updateValues();
+}
+let targetBtn = '';
+function autoClick(targetButton){
+  targetBtn = targetButton;
+}
+setInterval(() => {
+  switch (targetBtn) {
+    case 'pizza':
+      document.querySelector('.pizzaBtn').style.border = "10px solid black";
+      document.querySelector('.doughBtn').style.border = "none";
+      document.querySelector('.toppingsBtn').style.border = "none";
+      document.querySelector('.sauceBtn').style.border = "none";
+      makePizza();
+      break;
+    case 'dough':
+      document.querySelector('.pizzaBtn').style.border = "none";
+      document.querySelector('.doughBtn').style.border = "10px solid black";
+      document.querySelector('.toppingsBtn').style.border = "none";
+      document.querySelector('.sauceBtn').style.border = "none";
+      getItem("dough");
+      break;
+    case 'toppings':
+      document.querySelector('.pizzaBtn').style.border = "none";
+      document.querySelector('.doughBtn').style.border = "none";
+      document.querySelector('.toppingsBtn').style.border = "10px solid black";
+      document.querySelector('.sauceBtn').style.border = "none";
+      getItem("toppings");
+      break;
+    case 'sauce':
+      document.querySelector('.pizzaBtn').style.border = "none";
+      document.querySelector('.doughBtn').style.border = "none";
+      document.querySelector('.toppingsBtn').style.border = "none";
+      document.querySelector('.sauceBtn').style.border = "10px solid black";
+      getItem("sauce");
+      break;
+    case '':
+      document.querySelector('.pizzaBtn').style.border = "none";
+      document.querySelector('.doughBtn').style.border = "none";
+      document.querySelector('.toppingsBtn').style.border = "none";
+      document.querySelector('.sauceBtn').style.border = "none";
+      break;
+    default:
+
+      break;
+  }
+}, 250);
