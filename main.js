@@ -85,12 +85,16 @@ function getItem(thing) {
   }
   updateValues();
 }
-function makePizza() {
-  if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
-    statistics.pizzas++;
-    statistics.dough--;
-    statistics.sauce--;
-    statistics.toppings = statistics.toppings - 2;
+function makePizza(times) {
+  let timeS = times;
+  while (timeS > 0) {
+    if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
+      statistics.pizzas++;
+      statistics.dough--;
+      statistics.sauce--;
+      statistics.toppings = statistics.toppings - 2;
+    }
+    timeS--;
   }
   updateValues();
 }
@@ -105,7 +109,7 @@ setInterval(() => {
       document.querySelector('.doughBtn').style.border = "none";
       document.querySelector('.toppingsBtn').style.border = "none";
       document.querySelector('.sauceBtn').style.border = "none";
-      makePizza();
+      makePizza(1);
       break;
     case 'dough':
       document.querySelector('.pizzaBtn').style.border = "none";
@@ -169,13 +173,31 @@ function buyUpgrades(thing){
         statistics.pizzaValue++;
       }
       break;
-
+    case 'pizzaMaker':
+      if (statistics.coins >= prices.makerPrice) {
+        statistics.coins = statistics.coins - prices.makerPrice;
+        prices.makerPrice = Math.round(prices.makerPrice * 1.65);
+        autoMaker.pizzaMaker++;
+      }
+      break;
     default:
       break;
   }
   updatePrices();
   updateValues();
 }
+let autoMaker = {
+  pizzaMaker: 0,
+  doughMaker: 0,
+  toppingMaker: 0,
+  sauceMaker: 0,
+};
+setInterval(() => {
+  makePizza(autoMaker.pizzaMaker);
+  statistics.dough = statistics.dough + autoMaker.doughMaker;
+  statistics.toppings = statistics.toppings + autoMaker.toppingMaker;
+  statistics.sauce = statistics.sauce + autoMaker.sauceMaker;
+}, 1000);
 function development() {
   document.querySelector('.devMode').style.display = "block";
   statistics.coins = 99999;
