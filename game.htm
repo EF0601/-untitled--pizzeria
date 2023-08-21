@@ -30,14 +30,15 @@
     </div>
     <div class="box">
       <h2>Upgrades</h2>
-      <button>Pizza value +1 ($100)</button><br>
-      <button>Auto pizza maker upgrade($75)</button><br>
-      <button>Auto dough maker upgrade ($50)</button><br>
-      <button>Auto topping maker upgrade ($50)</button><br>
-      <button>Auto sauce maker upgrade ($50)</button><br>
+      <button onclick="buyUpgrades('value')">Pizza value +$1 ($<span class="valuePrice">100</span>)</button><br>
+      <button onclick="buyUpgrades('pizzaMaker')">Auto pizza maker upgrade +1/sec($<span class="makerPrice">75</span>)</button><br>
+      <button onclick="buyUpgrades('doughMaker')">Auto dough maker upgrade +1/sec($<span class="doughPrice">50</span>)</button><br>
+      <button onclick="buyUpgrades('toppingMaker')">Auto topping maker upgrade +1/sec($<span class="toppingPrice">50</span>)</button><br>
+      <button onclick="buyUpgrades('sauceMaker')">Auto sauce maker upgrade +1/sec($<span class="saucePrice">50</span>)</button><br>
     </div>
   </div>
   <footer>
+    <h1 class="devMode"><b>DEVELOPMENT MODE</b></h1>
     <h2>Untitled Pizzeria: Tycoon (remastered) v0.3.1-beta</h2><br>
     <input type="text" value="Enter code for THIS game." class="codeInput">    <button class="codeButton" onclick="codeSubmit()">Submit</button><br>
     <button id="myBtn" class="codeButton">Open wiki</button>

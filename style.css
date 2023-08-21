@@ -91,3 +91,6 @@ footer{
 button{
   outline: none;
 }
+.devMode{
+  display: none;
+}

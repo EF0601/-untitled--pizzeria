@@ -139,3 +139,49 @@ setInterval(() => {
       break;
   }
 }, 250);
+const priceLocations = {
+  valuePrice: document.querySelector('.valuePrice'),
+  makerPrice: document.querySelector('.makerPrice'),
+  doughPrice: document.querySelector('.doughPrice'),
+  toppingPrice: document.querySelector('.toppingPrice'),
+  saucePrice: document.querySelector('.saucePrice'),
+};
+let prices = {
+  valuePrice: 100,
+  makerPrice: 75,
+  doughPrice: 50,
+  toppingPrice: 50,
+  saucePrice: 50,
+};
+function updatePrices() {
+  priceLocations.valuePrice.textContent = prices.valuePrice;
+  priceLocations.makerPrice.textContent = prices.makerPrice;
+  priceLocations.doughPrice.textContent = prices.doughPrice;
+  priceLocations.toppingPrice.textContent = prices.toppingPrice;
+  priceLocations.saucePrice.textContent = prices.saucePrice;
+}
+function buyUpgrades(thing){
+  switch (thing) {
+    case 'value':
+      if (statistics.coins >= prices.valuePrice) {
+        statistics.coins = statistics.coins - prices.valuePrice;
+        prices.valuePrice = Math.round(prices.valuePrice * 1.65);
+        statistics.pizzaValue++;
+      }
+      break;
+
+    default:
+      break;
+  }
+  updatePrices();
+  updateValues();
+}
+function development() {
+  document.querySelector('.devMode').style.display = "block";
+  statistics.coins = 99999;
+  statistics.dough = 99999;
+  statistics.pizzas = 99999;
+  statistics.toppings = 99999;
+  statistics.sauce = 99999;
+  updateValues();
+}
