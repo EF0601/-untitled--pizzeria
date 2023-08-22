@@ -30,11 +30,11 @@
     </div>
     <div class="box">
       <h2>Upgrades</h2>
-      <button onclick="buyUpgrades('value')">Pizza value +$1 ($<span class="valuePrice">100</span>)</button><br>
-      <button onclick="buyUpgrades('pizzaMaker')">Auto pizza maker upgrade +1/sec($<span class="makerPrice">75</span>)</button><br>
-      <button onclick="buyUpgrades('doughMaker')">Auto dough maker upgrade +1/sec($<span class="doughPrice">50</span>)</button><br>
-      <button onclick="buyUpgrades('toppingMaker')">Auto topping maker upgrade +1/sec($<span class="toppingPrice">50</span>)</button><br>
-      <button onclick="buyUpgrades('sauceMaker')">Auto sauce maker upgrade +1/sec($<span class="saucePrice">50</span>)</button><br>
+      <button onclick="buyUpgrades('value')">Pizza value +$1 per level ($<span class="valuePrice">100</span>) level <span class="valueLevel">0</span></button><br>
+      <button onclick="buyUpgrades('pizzaMaker')">Auto pizza maker upgrade +1/sec per level($<span class="makerPrice">75</span>) level <span class="pizzaLevel">0</span></button><br>
+      <button onclick="buyUpgrades('doughMaker')">Auto dough maker upgrade +1/sec per level($<span class="doughPrice">50</span>) level <span class="doughLevel">0</span></button><br>
+      <button onclick="buyUpgrades('toppingMaker')">Auto topping maker upgrade +1/sec per level($<span class="toppingPrice">50</span>) level <span class="toppingLevel">0</span></button><br>
+      <button onclick="buyUpgrades('sauceMaker')">Auto sauce maker upgrade +1/sec per level($<span class="saucePrice">50</span>) level <span class="sauceLevel">0</span></button><br>
     </div>
   </div>
   <footer>
@@ -52,10 +52,21 @@
     </div>
 
   </div>
+  <div class="modal" id="afk" style="display: block;">
+
+    <!-- Modal content -->
+    <div class="modal-content" style="padding: 20px; text-align: center; font-size: larger;">
+      <h1>AFK?</h1>
+      <p>We designed this game to not be afk-ed. You have not interacted with the page for 10 minutes. Your game will end in soon.</p>
+      <b>Move mouse, click, or type to exit.</b>
+    </div>
+
+  </div>
 
   <!--Scripts-->
   <script src="./nameInput.js"></script>
   <script src="./main.js"></script>
   <script src="./modal.js"></script>
+  <script src="./afk.js"></script>
 </body>
 </html>

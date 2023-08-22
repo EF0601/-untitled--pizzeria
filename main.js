@@ -42,6 +42,17 @@ function codeSubmit() {
       updateValues();
       disableCodes();
       break;
+    case 'AUTO-CLICK':
+      statistics.coins = 300;
+      updateValues();
+      disableCodes();
+      break;
+    case 'SORRY':
+      statistics.pizzaValue = 4;
+      updateValues();
+      updatePrices();
+      disableCodes();
+      break;
     default:
       const currentCodeEntry = document.querySelector('.codeInput').value;
       document.querySelector('.codeInput').value = "CODE IS INVALID!";
@@ -63,7 +74,7 @@ setInterval(() => {
     statistics.pizzas = 0;
     updateValues();
   }
-  else{
+  else {
     document.querySelector('.soldPizzas').textContent = 0;
     document.querySelector('.soldPizzasValue').textContent = 0;
   }
@@ -99,7 +110,7 @@ function makePizza(times) {
   updateValues();
 }
 let targetBtn = '';
-function autoClick(targetButton){
+function autoClick(targetButton) {
   targetBtn = targetButton;
 }
 setInterval(() => {
@@ -163,8 +174,14 @@ function updatePrices() {
   priceLocations.doughPrice.textContent = prices.doughPrice;
   priceLocations.toppingPrice.textContent = prices.toppingPrice;
   priceLocations.saucePrice.textContent = prices.saucePrice;
+
+  document.querySelector('.valueLevel').textContent = statistics.pizzaValue - 2;
+  document.querySelector('.pizzaLevel').textContent = autoMaker.pizzaMaker;
+  document.querySelector('.doughLevel').textContent = autoMaker.doughMaker;
+  document.querySelector('.toppingLevel').textContent = autoMaker.toppingMaker;
+  document.querySelector('.sauceLevel').textContent = autoMaker.sauceMaker;
 }
-function buyUpgrades(thing){
+function buyUpgrades(thing) {
   switch (thing) {
     case 'value':
       if (statistics.coins >= prices.valuePrice) {
@@ -178,6 +195,27 @@ function buyUpgrades(thing){
         statistics.coins = statistics.coins - prices.makerPrice;
         prices.makerPrice = Math.round(prices.makerPrice * 1.65);
         autoMaker.pizzaMaker++;
+      }
+      break;
+    case 'doughMaker':
+      if (statistics.coins >= prices.doughPrice) {
+        statistics.coins = statistics.coins - prices.doughPrice;
+        prices.doughPrice = Math.round(prices.doughPrice * 1.45);
+        autoMaker.doughMaker++;
+      }
+      break;
+    case 'toppingMaker':
+      if (statistics.coins >= prices.toppingPrice) {
+        statistics.coins = statistics.coins - prices.toppingPrice;
+        prices.toppingPrice = Math.round(prices.toppingPrice * 1.35);
+        autoMaker.toppingMaker++;
+      }
+      break;
+    case 'sauceMaker':
+      if (statistics.coins >= prices.saucePrice) {
+        statistics.coins = statistics.coins - prices.saucePrice;
+        prices.saucePrice = Math.round(prices.saucePrice * 1.45);
+        autoMaker.sauceMaker++;
       }
       break;
     default:
