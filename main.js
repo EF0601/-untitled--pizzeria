@@ -5,6 +5,7 @@ let statistics = {
   toppings: 0,
   sauce: 0,
   pizzaValue: 2,
+  authenticPizza: 0,
 };
 const statisticsDisplay = {
   coins: document.querySelector('.coins'),
@@ -69,9 +70,11 @@ function disableCodes() {
 setInterval(() => {
   if (statistics.pizzas > 0) {
     document.querySelector('.soldPizzas').textContent = statistics.pizzas;
-    document.querySelector('.soldPizzasValue').textContent = statistics.pizzas * statistics.pizzaValue;
+    document.querySelector('.soldPizzasValue').textContent = String(Math.round(statistics.pizzas * statistics.pizzaValue) * ((statistics.authenticPizza * 0.25)+1));
     statistics.coins = statistics.coins + Number(document.querySelector('.soldPizzasValue').textContent);
     statistics.pizzas = 0;
+    statistics.authenticPizza = 0;
+    statistics.coins = Math.round(statistics.coins);
     updateValues();
   }
   else {
@@ -96,7 +99,7 @@ function getItem(thing) {
   }
   updateValues();
 }
-function makePizza(times) {
+function makePizza(times, authentic) {
   let timeS = times;
   while (timeS > 0) {
     if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
@@ -106,6 +109,9 @@ function makePizza(times) {
       statistics.toppings = statistics.toppings - 2;
     }
     timeS--;
+  }
+  if (authentic == true) {
+    statistics.authenticPizza++;
   }
   updateValues();
 }
@@ -120,7 +126,7 @@ setInterval(() => {
       document.querySelector('.doughBtn').style.border = "none";
       document.querySelector('.toppingsBtn').style.border = "none";
       document.querySelector('.sauceBtn').style.border = "none";
-      makePizza(1);
+      makePizza(1, true);
       break;
     case 'dough':
       document.querySelector('.pizzaBtn').style.border = "none";
@@ -231,7 +237,7 @@ let autoMaker = {
   sauceMaker: 0,
 };
 setInterval(() => {
-  makePizza(autoMaker.pizzaMaker);
+  makePizza(autoMaker.pizzaMaker, false);
   statistics.dough = statistics.dough + autoMaker.doughMaker;
   statistics.toppings = statistics.toppings + autoMaker.toppingMaker;
   statistics.sauce = statistics.sauce + autoMaker.sauceMaker;
