@@ -42,6 +42,17 @@ function codeSubmit() {
       updateValues();
       disableCodes();
       break;
+    case 'AUTO-CLICK':
+      statistics.coins = 300;
+      updateValues();
+      disableCodes();
+      break;
+    case 'SORRY':
+      statistics.pizzaValue = 4;
+      updateValues();
+      updatePrices();
+      disableCodes();
+      break;
     default:
       const currentCodeEntry = document.querySelector('.codeInput').value;
       document.querySelector('.codeInput').value = "CODE IS INVALID!";
@@ -63,7 +74,7 @@ setInterval(() => {
     statistics.pizzas = 0;
     updateValues();
   }
-  else{
+  else {
     document.querySelector('.soldPizzas').textContent = 0;
     document.querySelector('.soldPizzasValue').textContent = 0;
   }
@@ -85,17 +96,21 @@ function getItem(thing) {
   }
   updateValues();
 }
-function makePizza() {
-  if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
-    statistics.pizzas++;
-    statistics.dough--;
-    statistics.sauce--;
-    statistics.toppings = statistics.toppings - 2;
+function makePizza(times) {
+  let timeS = times;
+  while (timeS > 0) {
+    if (statistics.dough >= 1 && statistics.toppings >= 2 && statistics.sauce >= 1) {
+      statistics.pizzas++;
+      statistics.dough--;
+      statistics.sauce--;
+      statistics.toppings = statistics.toppings - 2;
+    }
+    timeS--;
   }
   updateValues();
 }
 let targetBtn = '';
-function autoClick(targetButton){
+function autoClick(targetButton) {
   targetBtn = targetButton;
 }
 setInterval(() => {
@@ -105,7 +120,7 @@ setInterval(() => {
       document.querySelector('.doughBtn').style.border = "none";
       document.querySelector('.toppingsBtn').style.border = "none";
       document.querySelector('.sauceBtn').style.border = "none";
-      makePizza();
+      makePizza(1);
       break;
     case 'dough':
       document.querySelector('.pizzaBtn').style.border = "none";
@@ -139,3 +154,94 @@ setInterval(() => {
       break;
   }
 }, 250);
+const priceLocations = {
+  valuePrice: document.querySelector('.valuePrice'),
+  makerPrice: document.querySelector('.makerPrice'),
+  doughPrice: document.querySelector('.doughPrice'),
+  toppingPrice: document.querySelector('.toppingPrice'),
+  saucePrice: document.querySelector('.saucePrice'),
+};
+let prices = {
+  valuePrice: 100,
+  makerPrice: 75,
+  doughPrice: 50,
+  toppingPrice: 50,
+  saucePrice: 50,
+};
+function updatePrices() {
+  priceLocations.valuePrice.textContent = prices.valuePrice;
+  priceLocations.makerPrice.textContent = prices.makerPrice;
+  priceLocations.doughPrice.textContent = prices.doughPrice;
+  priceLocations.toppingPrice.textContent = prices.toppingPrice;
+  priceLocations.saucePrice.textContent = prices.saucePrice;
+
+  document.querySelector('.valueLevel').textContent = statistics.pizzaValue - 2;
+  document.querySelector('.pizzaLevel').textContent = autoMaker.pizzaMaker;
+  document.querySelector('.doughLevel').textContent = autoMaker.doughMaker;
+  document.querySelector('.toppingLevel').textContent = autoMaker.toppingMaker;
+  document.querySelector('.sauceLevel').textContent = autoMaker.sauceMaker;
+}
+function buyUpgrades(thing) {
+  switch (thing) {
+    case 'value':
+      if (statistics.coins >= prices.valuePrice) {
+        statistics.coins = statistics.coins - prices.valuePrice;
+        prices.valuePrice = Math.round(prices.valuePrice * 1.65);
+        statistics.pizzaValue++;
+      }
+      break;
+    case 'pizzaMaker':
+      if (statistics.coins >= prices.makerPrice) {
+        statistics.coins = statistics.coins - prices.makerPrice;
+        prices.makerPrice = Math.round(prices.makerPrice * 1.65);
+        autoMaker.pizzaMaker++;
+      }
+      break;
+    case 'doughMaker':
+      if (statistics.coins >= prices.doughPrice) {
+        statistics.coins = statistics.coins - prices.doughPrice;
+        prices.doughPrice = Math.round(prices.doughPrice * 1.45);
+        autoMaker.doughMaker++;
+      }
+      break;
+    case 'toppingMaker':
+      if (statistics.coins >= prices.toppingPrice) {
+        statistics.coins = statistics.coins - prices.toppingPrice;
+        prices.toppingPrice = Math.round(prices.toppingPrice * 1.35);
+        autoMaker.toppingMaker++;
+      }
+      break;
+    case 'sauceMaker':
+      if (statistics.coins >= prices.saucePrice) {
+        statistics.coins = statistics.coins - prices.saucePrice;
+        prices.saucePrice = Math.round(prices.saucePrice * 1.45);
+        autoMaker.sauceMaker++;
+      }
+      break;
+    default:
+      break;
+  }
+  updatePrices();
+  updateValues();
+}
+let autoMaker = {
+  pizzaMaker: 0,
+  doughMaker: 0,
+  toppingMaker: 0,
+  sauceMaker: 0,
+};
+setInterval(() => {
+  makePizza(autoMaker.pizzaMaker);
+  statistics.dough = statistics.dough + autoMaker.doughMaker;
+  statistics.toppings = statistics.toppings + autoMaker.toppingMaker;
+  statistics.sauce = statistics.sauce + autoMaker.sauceMaker;
+}, 1000);
+function development() {
+  document.querySelector('.devMode').style.display = "block";
+  statistics.coins = 99999;
+  statistics.dough = 99999;
+  statistics.pizzas = 99999;
+  statistics.toppings = 99999;
+  statistics.sauce = 99999;
+  updateValues();
+}
